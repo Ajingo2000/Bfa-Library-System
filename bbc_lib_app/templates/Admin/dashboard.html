@@ -1,0 +1,197 @@
+{% extends 'Admin/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-12">
+    <!--Section: Content-->
+    <section class="">
+        <h2 class="fw-bolder">Welcome, {{ request.user.name }}&nbsp;{{ request.user.last_name }}!</h2>
+        <hr>
+        <div class="row justify-content-center">
+            <div class="row">
+                <!-- OVERVIEW CARDS SECTION -->
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 px-1 pb-2">
+                    <a href="{% url 'borrowed_books' %}">
+                        <div class="card card-default rounded-0 shadow bg-danger bg-gradient border-0 text-light">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row mx-0 w-100 align-items-center">
+                                        <div class="col-3">
+                                            <img src="{% static './images/book-borrow-icon.png' %}" alt="Borrow book icon" width="48" height="52" style="color: white;">
+                                        </div>
+                                        <div class="col-9">
+                                            <h1 class="text-end">{{ borrows }}</h2>
+                                        </div>
+                                        <div class="col-12 text-end"><b>Number of Loans</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 px-1 pb-2">
+                    <a href="{% url 'books' %}">
+                        <div class="card card-default rounded-0 shadow bg-gradient bg-primary bg-opacity-75 text-light">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row mx-0 w-100 align-items-center">
+                                        <div class="col-3">
+                                            <i class="fs-1 text-light fa fa-book"></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <h1 class="text-end">{{ book_count }}</h1>
+                                        </div>
+                                        <div class="col-12 text-end"><b>Total Number of Books</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 px-1 pb-2">
+                    <a href="{% url 'manage_user' %}">
+                        <div class="card card-default rounded-0 shadow bg-gradient bg-success bg-opacity-75 text-light">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row mx-0 w-100 align-items-center">
+                                        <div class="col-3">
+                                            <i class="fs-1 text-light fa fa-users"></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <h1 class="text-end">{{ users_count }}</h1>
+                                        </div>
+                                        <div class="col-12 text-end"><b>Issued User Cards</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 px-1 pb-2">
+                    <a href="{% url 'reservations' %}">
+                        <div class="card card-default rounded-0 shadow bg-gradient bg-warning bg-opacity-75 text-light">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row mx-0 w-100 align-items-center">
+                                        <div class="col-3">
+                                            <i class="fa-solid fa-registered" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <h1 class="text-end">{{ reservations }}</h2>
+                                        </div>
+                                        <div class="col-12 text-end"><b>Reservations</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div> -->
+                <!-- <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 px-1 pb-2">
+                    <a href="{% url 'borrowed_books' %}">
+                        <div class="card card-default rounded-0 shadow bg-gradient bg-secondary text-light">
+                            <div class="card-body">
+                                <div class="container-fluid">
+                                    <div class="row mx-0 w-100 align-items-center">
+                                        <div class="col-3">
+                                            <i class="fs-1 text-light fa fa-exchange"></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <h1 class="text-end">{{ transactions }}</h2>
+                                        </div>
+                                        <div class="col-12 text-end"><b>Transactions</b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div> -->
+                <!-- OVERVIEW CARDS SECTION END -->
+
+                <div class="card-body">
+                    <div class="btn-group mb-2 mr-2">
+                        <a href="{% url 'create_user' %}" style="color: white;">
+                        <button class="btn btn-primary " type="button" aria-haspopup="true" aria-expanded="false">
+                                Add User
+                                <br>
+                                <span class="material-icons" style="color: white;">add</span>
+                        </button>
+                        </a>
+                    </div>
+
+                    <div class="btn-group mb-2 mr-2">
+                        <a href="{% url 'add_book' %}" style="color: white;">
+                        <button class="btn btn-success " type="button"  aria-haspopup="true" aria-expanded="false">
+                            
+                                Add Book
+                                <br>
+                                <span class="material-icons" style="color: white;"> add_book </span>
+                        </button>
+                        </a>
+                    </div>
+
+                    <div class="btn-group mb-2 mr-2">
+                        <a href="{% url 'returnbook' %}" style="color: white;">
+                        <button class="btn btn-danger " type="button"  aria-haspopup="true" aria-expanded="false">
+                    
+                                Return Book
+                                <br>
+                                <span class="material-icons" style="color: white;"> arrow_back </span>
+                           
+                        </button>
+                        </a>
+                    </div>
+
+                    <div class="btn-group mb-2 mr-2">
+                        <a href="{% url 'searchbook' %}" style="color: white;">
+                        <button class="btn btn-primary " type="button"  aria-haspopup="true" aria-expanded="false">                    
+                                Search Book
+                                <br>
+                                <span class="material-icons" style="color: white;"> search_book</span>
+                           
+                        </button>
+                        </a>
+                    </div>
+                    <div class="btn-group mb-2 mr-2">
+                        <a href="{% url 'user_profiles' %}" style="color: white;">
+                        <button class="btn btn-dark " type="button"  aria-haspopup="true" aria-expanded="false">
+                    
+                                Search/Scan User
+                                <br>
+                                <span class="material-icons" style="color: white;"> qr_code </span>
+                           
+                        </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <section class="container">
+        <div id="large-th">
+            <div class="container-books">
+               <br> <br>
+                <div class="choose">
+                    <h1> A list of books</h1>
+                    <br>
+                    <a href="#list-th"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+                    <a href="#large-th"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+                </div>
+                <div id="list-th">
+                    {% for book in books %}
+                    <div class="book read">
+                        <div class="cover">
+                            <img src="{% static './book_covers/' %}{{ book.book_cover }}">
+                        </div>
+                        <div class="description">
+                                <p class="title">{{book.title}}<br>
+                                <span class="author">{{book.author}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'Admin/base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="editEmployeeModal" class="card">
+    <div class="card-header bg-primary text-white">
+        <h4 class="card-title">Edit Book</h4>
+    </div>
+    <div class="card-body">
+        <form action="{% url 'edit_book' book.book_id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" value="{{book.title}}" id="title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="book_cover">Book Cover</label>
+                    <input type="file" name="book_cover" class="form-control-file" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" name="author" value="{{book.author}}" id="author" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="publication_date">Publication Date</label>
+                    <input type="date" name="publication_date" value="{{book.publication_date}}" id="publication_date" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="isbn">ISBN</label>
+                    <input type="text" name="isbn" value="{{book.isbn}}" id="isbn" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" id="category" class="form-control">
+                        <option value="Christian History" {% if book.category == 'Christian History' %} selected {% endif %}>Christian History</option>
+                        <option value="Devotional" {% if book.category == 'Devotional' %} selected {% endif %}>Devotional</option>
+                        <option value="General History" {% if book.category == 'General History' %} selected {% endif %}>General History</option>
+                        <option value="Biography" {% if book.category == 'Biography' %} selected {% endif %}>Biography</option>
+                        <option value="Political" {% if book.category == 'Political' %} selected {% endif %}>Political</option>
+                        <option value="Fiction" {% if book.category == 'Fiction' %} selected {% endif %}>Fiction</option>
+                        <option value="Doctrinal" {% if book.category == 'Doctrinal' %} selected {% endif %}>Doctrinal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" value="{{book.description}}" id="description" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="availability_status">Availability</label>
+                    <select name="availability_status" id="availability_status" class="form-control">
+                        <option value="available" {% if book.availability_status == 'available' %} selected {% endif %}>Available</option>
+                        <option value="unavailable" {% if book.availability_status == 'unavailable' %} selected {% endif %}>Unavailable</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-info">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

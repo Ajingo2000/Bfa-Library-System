@@ -1,0 +1,14 @@
+{% extends 'Admin/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-md-12">
+    <h1>QR Code Scanner</h1>
+    <img src="data:image/jpeg;base64,{{ frame }}" alt="Camera Stream">
+    {% if qr_data %}
+        <p>Scanned QR Code Data: {{ qr_data }}</p>
+    {% endif %}
+</div>
+
+
+{% endblock %}

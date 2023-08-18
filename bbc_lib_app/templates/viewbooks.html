@@ -1,0 +1,72 @@
+<?php
+// viewbooks.php
+
+// Include the database connection file
+include 'connect.php';
+
+// Retrieve and display the list of books from the database
+$query = "SELECT * FROM books";
+$result = mysqli_query($connection, $query);
+
+// Close the database connection
+mysqli_close($connection);
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Books | Baptist For Africa Library System</title>
+    <link rel="stylesheet" href="library-style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Library Management System</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="viewbooks.php">View Books</a></li>
+                <li><a href="borrowbooks.php">Borrow Books</a></li>
+                <li><a href="returnbooks.php">Return Books</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </div>
+    </nav>
+
+    <section class="books-list">
+        <div class="container">
+            <h2>Books List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Publication Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                        <tr>
+                            <td><?php echo $row['title']; ?></td>
+                            <td><?php echo $row['author']; ?></td>
+                            <td><?php echo $row['genre']; ?></td>
+                            <td><?php echo $row['publication_year']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <?php echo date('Y'); ?> Library Management System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

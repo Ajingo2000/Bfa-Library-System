@@ -1,0 +1,30 @@
+body {
+    background-color: #fff;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ccc;
+}

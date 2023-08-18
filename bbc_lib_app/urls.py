@@ -1,0 +1,43 @@
+from django.urls import path
+from bbc_lib_app import views
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('page_search', views.page_search, name='page_search'),
+    path('signup/', views.signup, name='signup'),
+    path('borrow_book/', views.borrow_book, name='borrow_book'),
+    path('borrow_book/<int:book_id>/', views.borrow_book, name='borrow_book'),
+    path('borrowed_books/', views.borrowed_books, name='borrowed_books'),
+    path('books/', views.books, name='books'),
+    path('searchbook/', views.searchbook, name='searchbook'),
+    path('profile_view/', views.profile_view, name='profile_view'),
+    path('admin_logout/', views.admin_logout, name='admin_logout'),
+    path('admin_login/', views.admin_login, name='admin_login'),
+    path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('edit_user/', views.edit_user, name='edit_user'),
+    path('edit_user/<int:user_id>/', views.edit_user, name='edit_user'),
+    path('edit_book/',views.edit_book,name='edit_book'),
+    path('edit_book/<int:book_id>/', views.edit_book, name='edit_book'),
+    path('edit_borrow/',views.edit_borrow,name='edit_borrow'),
+    path('edit_borrow/<int:borrow_id>/', views.edit_borrow, name='edit_borrow'),
+    path('delete_user/', views.delete_user, name='delete_user'),
+    path('delete_user/<int:user_id>/', views.delete_user, name='delete_user'),
+    path('add_borrow/',views.add_borrow,name='add_borrow'),
+    path('add_book/',views.add_book,name='add_book'),
+    path('book_details',views.book_details,name='book_details'),
+    path('book_details/<int:book_id>/', views.book_details, name='book_details'),
+    path('book_details/<int:book_id>/submit_review/', views.submit_review, name='submit_review'),
+    path('manage_user',views.manage_user,name='manage_user'),
+    path('manage_user/<int:user_id>',views.manage_user,name='manage_user'),
+    path('create_user/', views.create_user, name='create_user'),
+    path('reservations/', views.reservations, name='reservations'),  # Admin view for reservations
+    path('returnbook',views.return_book,name='returnbook'),
+    path('returnbook/<int:user_id>/', views.edit_book, name='returnbook'),
+    path('process_qr_code_scan/', views.process_qr_code_scan, name='process_qr_code_scan'),
+    path('user_qr/', views.user_qr, name='user_qr'),
+    path('user_qr/<int:user_id>/', views.user_qr, name='user_qr'),
+    path('user_profiles/', views.user_profiles, name='user_profiles'),
+    path('user/', views.user_profile_view, name='user_view'),
+    path('user/<int:user_id>/', views.user_profile_view, name='user_view'),
+    
+
+]

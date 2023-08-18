@@ -1,0 +1,81 @@
+<?php
+// settings.php
+
+// Check if the user is logged in, otherwise redirect to the login page or show an error message
+// You need to implement your own authentication logic here
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Include any necessary database connection or user-related functions
+include 'db_connect.php';
+include 'user_functions.php';
+
+// Get the current user's information from the database
+$user = getUserById($_SESSION['user_id']);
+
+// Handle the form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the updated user information from the form fields
+    $firstName = $_POST['first_name'];
+    $lastName = $_POST['last_name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Update the user information in the database
+    $result = updateUser($_SESSION['user_id'], $firstName, $lastName, $email, $password);
+    if ($result) {
+        // Redirect to the dashboard or profile page with a success message
+        if ($_SESSION['role'] === 'admin') {
+            header("Location: admin_dashboard.php?message=success");
+        } else {
+            header("Location: user_profile.php?message=success");
+        }
+        exit();
+    } else {
+        // Show an error message, as the user update failed
+        $errorMessage = "Failed to update user. Please try again.";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings</title>
+    <!-- Include CSS or other necessary files -->
+</head>
+<body>
+    <!-- Include the header -->
+    <?php include 'header.php'; ?>
+
+    <div class="container">
+        <h1>Settings</h1>
+
+        <?php if (isset($errorMessage)): ?>
+            <p><?php echo $errorMessage; ?></p>
+        <?php endif; ?>
+
+        <form method="POST" action="">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" value="<?php echo $user['first_name']; ?>" required>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" value="<?php echo $user['last_name']; ?>" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $user['email']; ?>" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Update</button>
+        </form>
+    </div>
+
+    <!-- Include the footer -->
+    <?php include 'footer.php'; ?>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search | Baptists For Africa Library</title>
+    <link
+      rel="shortcut icon"
+      href="{% static './images/Baptists for Africa.jpg' %}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="{% static './css/books.css' %}">
+    <link rel="stylesheet" href="{% static './css/searchbook.css' %}">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    
+    <script src="{% static './js/script.js' %}" defer></script>
+
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="{% url 'index' %}"> <img src="{% static './images/Baptists for Africa.jpg' %}" alt="Bard Library Logo"> </a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'books' %}">Books</a></li>
+                    <li><a href="{% url 'reservation' %}">Reservation</a></li>
+                    <li><a href="{% url 'searchbook' %}">Search</a></li>
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                    <li><a href="{% url 'user_logout' %}">Logout</a></li>
+                    <!-- Add more navigation links as needed -->
+                    {% if is_logged_in %}
+                        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+                    {% endif %}
+                
+                </ul>
+
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </div>
+        </nav>
+
+        <header>
+            <h1>Search Results</h1>
+        </header>
+        <main>
+            {% if books %}
+                <ul>
+                    {% for book in books %}
+                        <li>
+                            <a href="{% url 'book_details' book.id %}">
+                                <img src="{{ book.image }}" alt="Book Cover">
+                                <h2>{{ book.title }}</h2>
+                                <p>{{ book.author }}</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No results found for your search.</p>
+            {% endif %}
+        </main>
+        
+    </section>    
+
+
+    <footer>
+        <div class="container">
+            <p class="copyrights"> 2023&copy; Baptists For Africa Library System. All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+</html>

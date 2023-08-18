@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ page_title }} | Baptists For Africa Library</title>
+    <link rel="shortcut icon" href="{% static './images/Baptists_for_Africa.png' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static './CSS2/bootstrap.min.css' %}">
+    <!----css3---->
+    <link rel="stylesheet" href="{% static './CSS2/custom.css' %}">
+    <link rel="stylesheet" href="{% static './css/book-section.css' %}">
+    <link rel="stylesheet" href="{% static './css/search.css' %}">
+    <!-- <link rel="stylesheet" href="{% static './css/loader.css' %}"> -->
+    <link rel="stylesheet" href="{% static './css/badge.css' %}">
+    <script src="{% static './js/badge.js' %}" defer></script>
+
+
+    
+    <!--google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!--google material icon-->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--Css Link  put after title  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!--Script Link  put befor end of </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/instascan/1.0.0/index.min.js" integrity="sha512-ve8zzIbgiFFiUFW32RRJD+NBFRoVrGlhYfRLcTbQrqcFeazoPxhV03wWlyvDQE+/8GgZSMp+HqJlVBloc9D2vA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="{% static './js/main.js' %}" defer></script>
+    <!-- <script src="{% static './js/instascan.min.js' %}" defer></script> -->
+    <!-- <script src="{% static './js/jquery-3.6.0.min.js' %}" defer></script> -->
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js" defer></script>
+
+    <script src="{% static './js/scanners.js' %}"  defer></script>
+    
+    <!-- <script src="{% static './js/scannermodal.js' %}"  defer></script> -->
+    <style>
+        a {
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="body-overlay"></div>
+        <!-------------------------sidebar------------>
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3><img src="{% static './images/Baptists for Africa.jpg' %}" class="img-fluid" /><span>{{user.username}}</span></h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="{% url 'admin_dashboard' %}" class="dashboard"><i class="material-icons">dashboard</i>
+                        <span>Dashboard</span></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="material-icons">apps</i>Manage</a>
+                    <ul class="collapse list-unstyled menu" id="homeSubmenu1">
+                        <li>
+                            <a href="{%url 'manage_user' %}">Users </a>
+                        </li>
+                        <li>
+                            <a href="{%url 'books' %}">Books</a>
+                        </li>
+                        <li>
+                            <a href="{%url 'borrowed_books' %}">Borrows</a>
+                        </li>
+                        <!-- <li>
+                            <a href="{%url 'reservations' %}">Reservations</a>
+                        </li> -->
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="material-icons">add</i><span>Add</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu2">
+                        <li>
+                            <a href="{% url 'create_user' %}">Add Users </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'add_book' %}">Add Books</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'add_borrow' %}">Add Borrow</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="material-icons">edit</i>
+                        <span>edit</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu3">
+                        <li>
+                            <a href="{% url 'user_profiles' %}">Edit User Profiles</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#pageSubmenu5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="material-icons">qr_code</i><span>Qrcode Functionality</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu5">
+                        <li>
+                            <a href="{% url 'user_profiles' %}">User profile  search and scan </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'searchbook' %}">Search Book</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'borrow_book' %}"> User Book Borrow</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'returnbook' %}">User Book Return</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- <li class="dropdown">
+                    <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="material-icons">equalizer</i><span>Charts</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu4">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li> -->
+                <!-- <li class="dropdown">
+                    <a href="#pageSubmenu6" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="material-icons">grid_on</i><span>tables</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu6">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li> -->
+                <!-- <li class="dropdown">
+                    <a href="#pageSubmenu7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="material-icons">content_copy</i><span>Pages</span></a>
+                    <ul class="collapse list-unstyled menu" id="pageSubmenu7">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="#"><i class="material-icons">date_range</i><span>copy</span></a>
+                </li> -->
+                <!-- <li class="">
+                    <a href="#"><i class="material-icons">library_books</i><span>Calender </span></a>
+                </li> -->
+            </ul>
+        </nav>
+        <!--------page-content---------------->
+        <div id="content">
+            <!--top--navbar----design--------->
+            <div class="top-navbar">
+                <div class="xp-topbar">
+                    <!-- Start XP Row -->
+                    <div class="row">
+                        <!-- Start XP Col -->
+                        <div class="col-2 col-md-1 col-lg-1 order-2 order-md-1 align-self-center">
+                            <div class="xp-menubar">
+                                <span class="material-icons text-white">signal_cellular_alt </span>
+                            </div>
+                        </div>
+                        <!-- End XP Col -->
+                        <!-- Start XP Col -->
+                        <div class="col-md-5 col-lg-3 order-3 order-md-2">
+                            <div class="xp-searchbar">
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <input type="search" class="form-control search" name="query" placeholder="Search">
+                                        <div class="input-group-append">
+                                            <button class="btn" type="submit" id="button-addon2">GO</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End XP Col -->
+                        <!-- Start XP Col -->
+                        <div class="col-10 col-md-6 col-lg-8 order-1 order-md-3">
+                            <div class="xp-profilebar text-right">
+                                <nav class="navbar p-0">
+                                    <ul class="nav navbar-nav flex-row ml-auto">
+                                        <li class="dropdown nav-item active">
+                                            <a href="#" class="nav-link" data-toggle="dropdown">
+                                                <span class="material-icons">notifications</span>
+                                                <span class="notification">4</span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#">You have 5 new messages</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">You're now friend with Mike</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Wish Mary on her birthday!</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">5 warnings in Server Console</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <span class="material-icons">question_answer</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link" href="#" data-toggle="dropdown">
+                                                {% if user.profile_image %}
+                                                <img src="{% static './profile_images/' %}{{user.profile_image}}.jpg " alt="{{ user.profile_image }} Cover" style="width:40px; border-radius:50%;">
+                                                {% else %}
+                                                <img src="{% static './profile_images/default.png' %}" alt="Default Cover" style="width:40px; border-radius:50%;">
+                                                {% endif %}
+                                                <span class="xp-user-live"></span>
+                                            </a>
+                                            <ul class="dropdown-menu small-menu">
+                                                <li>
+                                                    <a href="{% url 'profile_view' %}">
+                                                    <span class="material-icons"> person_outline </span>Profile </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span class="material-icons"> settings </span>Settings</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'admin_logout' %}"><span class="material-icons"> logout</span>Logout</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- End XP Col -->
+                    </div>
+                    <!-- End XP Row -->
+                </div>
+                <div class="xp-breadcrumbbar text-center">
+                    <h4 class="page-title">{{ page_heading }}</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+            <!--------main-content------------->
+            <div class="main-content">
+                <div class="">
+                    {% block content %}
+    
+                    {% endblock %}
+                </div>
+            </div>
+            
+            <BR><BR><BR><BR><BR><BR><BR><BR><BR></BR></BR></BR>
+            <!---footer---->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="footer-in">
+                        <p class="mb-0">Copyright &copy 2023 Baptist for Africa Library - All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    </div>
+
+ 
+
+    <!----------html code compleate----------->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static './JS2/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static './JS2//popper.min.js' %}"></script>
+    <script src="{% static './JS2//bootstrap.min.js' %}"></script>
+    <script src="{% static './JS2//jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".xp-menubar").on('click', function() {
+                $('#sidebar').toggleClass('active');
+                $('#content').toggleClass('active');
+            });
+            $(".xp-menubar,.body-overlay").on('click', function() {
+                $('#sidebar,.body-overlay').toggleClass('show-nav');
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+<!-- Main Section -->

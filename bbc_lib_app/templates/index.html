@@ -1,0 +1,596 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Baptists For Africa Library</title>
+    <link
+      rel="shortcut icon"
+      href="{% static './images/Baptists for Africa.jpg' %}"
+      type="image/x-icon"
+    />
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static './css/index.css' %}">
+    <link rel="stylesheet" href="{% static './css/logger.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="{% static './css/book-section.css' %}">
+    <link rel="stylesheet" href="{% static './css/search.css' %}">
+    <link rel="stylesheet" href="{% static './CSS2/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static './CSS2/jquery-ui-min.css' %}">
+    <link rel="stylesheet" href="{% static './CSS2/jquery-ui.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--Script Link  put befor end of </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/instascan/1.0.0/index.min.js" integrity="sha512-ve8zzIbgiFFiUFW32RRJD+NBFRoVrGlhYfRLcTbQrqcFeazoPxhV03wWlyvDQE+/8GgZSMp+HqJlVBloc9D2vA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script src="{% static './js/main.js' %}" defer></script>
+    <script src="{% static './JS2/wow.min.js' %}" defer></script>
+    <script src="{% static './JS2/popper.min.js' %}" defer></script>
+    <script src="{% static './JS2/jquery-ui.js' %}" defer></script>
+    <script src="{% static './JS2/jquery.js' %}" defer></script>
+    <script src="{% static './JS2/jquery-ui-min.js' %}" defer></script>
+    <script src="{% static './JS2/bootstrap.min.js' %}" defer></script>
+    <script src="{% static './JS2/jquery-3.3.1.min.js' %}" defer></script>
+    <script src="{% static './JS2/jquery-3.3.1.slim.min.js' %}" defer></script>
+
+    <!-- <script src="{% static './js/instascan.min.js' %}" defer></script> -->
+    
+    
+</head>
+<body>
+    <section class="header">
+        {% include "navbar.html" %}
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="text-box">
+                    <h2>Daniel 9:2</h2>
+                    <p>...I Daniel understood by books...</p>
+                </div>
+                <img class="d-block w-100 " height="500px" src="{% static './images/edwin-petrus-33nnXxe4puc-unsplash.jpg' %}" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <div class="text-box">
+                    <h2>1 Timothy 4:13</h2>
+                    <p>Till I come, give attendance to reading, to exhortation, to doctrine.</p>
+                </div>
+                <img class="d-block w-100 " height="500px" src="{% static './images/luisa-brimble-VfHoMBagDPc-unsplash.jpg' %}" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <div class="text-box">
+                    <h2>2 Timothy 2:15 </h2>
+                    <p>Study to shew thyself approved unto God, a workman that needeth not to be ashamed, rightly dividing the word of truth.</p>
+                </div>
+                <img class="d-block w-100 " height="500px" src="{% static './images/chuttersnap-Zf64Osndqvc-unsplash.jpg' %}" alt="Third slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          
+        <!-- <div class="text-box">
+            <h2>1 Timothy 4:13</h2>
+            <p>Till I come, give attendance to reading, to exhortation, to doctrine.</p>
+        </div> -->
+        
+    </section>
+
+     <!--====== BOOK PORTFOLIO PART START ======-->
+     <!-- Main Section -->
+     <section class="card-body" style="background-color: white;">
+      <!-- Header Content -->
+      <header id="header" class="page-header">
+        <div class="page-header-container row">
+  
+          <!-- Logo -->
+          <div class="main-logo col-12 col-md-4 d-flex justify-content-lg-start justify-content-center">
+            <h4 class=" text-black ">Search Books</h4>
+          </div>
+  
+          <div class="menu-search col-12 col-md-12">
+  
+            <!-- Search -->
+            <form method="post" action=" {% url 'index' %}">
+            {% csrf_token %}
+            <div class="input-group mt-3">
+              <input id="search_book" type="text" class="form-control" name="query" value="" placeholder="Search by Title or Author">
+              <div class="input-group-append">
+                  <button class="btn btn-dark" type="button">Search</button>
+              </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </header>
+  
+  
+      <!-- Main Section -->
+      <div class="page-container">
+        <div class="page-title category-title">
+          <!-- <h1>Book Viewer</h1> -->
+        </div>
+  
+        <section id="book_list">
+  
+          <div class="toolbar row">
+            <div class="filter-options col-12 col-md-12">
+              <div class="btn-group nav nav-tabs" role="group" aria-label="Categories" >
+                <a href="#all-categories" class="btn btn-link filter-item active nav-link" data-toggle="tab">All Categories</a>
+                <a href="#christian-history" class="btn btn-link filter-item nav-link" data-toggle="tab">Christian History</a>
+                <a href="#general-history" class="btn btn-link filter-item nav-link" data-toggle="tab">General History</a>
+                <a href="#devotional" class="btn btn-link filter-item nav-link" data-toggle="tab">Devotional</a>
+                <a href="#doctrinal" class="btn btn-link filter-item nav-link" data-toggle="tab">Doctrinal</a>
+                <a href="#biography" class="btn btn-link filter-item nav-link" data-toggle="tab">Biography</a>
+                <a href="#political" class="btn btn-link filter-item nav-link" data-toggle="tab">Political</a>
+                <a href="#fiction" class="btn btn-link filter-item nav-link" data-toggle="tab">Fiction</a>     
+              </div>
+            </div>
+  
+          <div id="grid" class="card-body tab-content pt-3">
+            <ul class="content row tab-pane active" id="all-categories">
+  
+              <!-- Repeat the list items with appropriate Bootstrap classes -->
+              <!-- For example, the first book-item will be as follows: -->
+              {% for book in books %}
+              <li class="book-item col-12 col-md-6 d-flex" >
+                <div class="bk-img">
+                  <div class="bk-wrapper">
+                    <div class="bk-book bk-bookdefault">
+                      <div class="bk-front">
+                        <div class="bk-cover">
+                          <img src="{% static './book_covers/' %}{{ book.book_cover }}" alt="{{ book.book_cover }}" width="152.17px" height="218.12px">
+                        </div>
+                      </div>
+                      <div class="bk-back"></div>
+                      <div class="bk-left"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-details">
+                  <h3 class="book-item_title">{{ book.title }}</h3>
+                  <p class="author">{{ book.author }} &bull; {{ book.publication_date }}</p>
+                  <p>{{ book.description }}</p>
+                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#overlay-1">Details</a>
+                </div>
+  
+                <!-- Overlay Content -->
+                <div class="modal fade" id="overlay-1" tabindex="-1" aria-labelledby="overlay-1-label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="overlay-1-label">{{ book.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="author">Book.title</p>
+                        <p class="published">{{ book.publication_date }}</p>
+                        <p class="synopsis">{{ book.description }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Overlay Content -->
+  
+              </li>
+              <!-- Repeat the rest of the book items -->
+              {% endfor%}
+            </ul>
+            <ul  class="row tab-pane" id="christian-history">
+  
+              <!-- Repeat the list items with appropriate Bootstrap classes -->
+              <!-- For example, the first book-item will be as follows: -->
+              {% for book in books %}
+              {% if book.category == 'Christian History' %}
+              <li class="book-item col-12 col-md-6 d-flex" >
+                <div class="bk-img">
+                  <div class="bk-wrapper">
+                    <div class="bk-book bk-bookdefault">
+                      <div class="bk-front">
+                        <div class="bk-cover">
+                          <img src="{% static './book_covers/' %}{{ book.book_cover }}" alt="{{ book.book_cover }}" width="152.17px" height="218.12px">
+                        </div>
+                      </div>
+                      <div class="bk-back"></div>
+                      <div class="bk-left"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-details">
+                  <h3 class="book-item_title">{{ book.title }}</h3>
+                  <p class="author">{{ book.author }} &bull; {{ book.publication_date }}</p>
+                  <p>{{ book.description }}</p>
+                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#overlay-1">Details</a>
+                </div>
+  
+                <!-- Overlay Content -->
+                <div class="modal fade" id="overlay-1" tabindex="-1" aria-labelledby="overlay-1-label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="overlay-1-label">{{ book.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="author">Book.title</p>
+                        <p class="published">{{ book.publication_date }}</p>
+                        <p class="synopsis">{{ book.description }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Overlay Content -->
+  
+              </li>
+              {% endif %}
+              <!-- Repeat the rest of the book items -->
+              {% endfor%}
+            </ul>
+            <ul class="row tab-pane " id="general-history">
+  
+              <!-- Repeat the list items with appropriate Bootstrap classes -->
+              <!-- For example, the first book-item will be as follows: -->
+              {% for book in books %}
+              {% if book.category == 'General History' %}
+              <li class="book-item col-12 col-md-6 d-flex" >
+                <div class="bk-img">
+                  <div class="bk-wrapper">
+                    <div class="bk-book bk-bookdefault">
+                      <div class="bk-front">
+                        <div class="bk-cover">
+                          <img src="{% static './book_covers/' %}{{ book.book_cover }}" alt="{{ book.book_cover }}" width="152.17px" height="218.12px">
+                        </div>
+                      </div>
+                      <div class="bk-back"></div>
+                      <div class="bk-left"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-details">
+                  <h3 class="book-item_title">{{ book.title }}</h3>
+                  <p class="author">{{ book.author }} &bull; {{ book.publication_date }}</p>
+                  <p>{{ book.description }}</p>
+                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#overlay-1">Details</a>
+                </div>
+  
+                <!-- Overlay Content -->
+                <div class="modal fade" id="overlay-1" tabindex="-1" aria-labelledby="overlay-1-label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="overlay-1-label">{{ book.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="author">Book.title</p>
+                        <p class="published">{{ book.publication_date }}</p>
+                        <p class="synopsis">{{ book.description }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Overlay Content -->
+  
+              </li>
+              {% endif %}
+              <!-- Repeat the rest of the book items -->
+              {% endfor%}
+            </ul>
+            <ul class="row tab-pane" id="devotional">
+  
+              <!-- Repeat the list items with appropriate Bootstrap classes -->
+              <!-- For example, the first book-item will be as follows: -->
+              {% for book in books %}
+              {% if book.category == 'Devotional' %}
+              <li class="book-item col-12 col-md-6 d-flex" >
+                <div class="bk-img">
+                  <div class="bk-wrapper">
+                    <div class="bk-book bk-bookdefault">
+                      <div class="bk-front">
+                        <div class="bk-cover">
+                          <img src="{% static './book_covers/' %}{{ book.book_cover }}" alt="{{ book.book_cover }}" width="152.17px" height="218.12px">
+                        </div>
+                      </div>
+                      <div class="bk-back"></div>
+                      <div class="bk-left"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-details">
+                  <h3 class="book-item_title">{{ book.title }}</h3>
+                  <p class="author">{{ book.author }} &bull; {{ book.publication_date }}</p>
+                  <p>{{ book.description }}</p>
+                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#overlay-1">Details</a>
+                </div>
+  
+                <!-- Overlay Content -->
+                <div class="modal fade" id="overlay-1" tabindex="-1" aria-labelledby="overlay-1-label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="overlay-1-label">{{ book.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="author">Book.title</p>
+                        <p class="published">{{ book.publication_date }}</p>
+                        <p class="synopsis">{{ book.description }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Overlay Content -->
+  
+              </li>
+              {% endif %}
+              <!-- Repeat the rest of the book items -->
+              {% endfor%}
+            </ul>
+            <ul class="row tab-pane " id="doctrinal">
+  
+              <!-- Repeat the list items with appropriate Bootstrap classes -->
+              <!-- For example, the first book-item will be as follows: -->
+              {% for book in books %}
+              {% if book.category == 'Doctrinal' %}
+              <li class="book-item col-12 col-md-6 d-flex" >
+                <div class="bk-img">
+                  <div class="bk-wrapper">
+                    <div class="bk-book bk-bookdefault">
+                      <div class="bk-front">
+                        <div class="bk-cover">
+                          <img src="{% static './book_covers/' %}{{ book.book_cover }}" alt="{{ book.book_cover }}" width="152.17px" height="218.12px">
+                        </div>
+                      </div>
+                      <div class="bk-back"></div>
+                      <div class="bk-left"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-details">
+                  <h3 class="book-item_title">{{ book.title }}</h3>
+                  <p class="author">{{ book.author }} &bull; {{ book.publication_date }}</p>
+                  <p>{{ book.description }}</p>
+                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#overlay-1">Details</a>
+                </div>
+  
+                <!-- Overlay Content -->
+                <div class="modal fade" id="overlay-1" tabindex="-1" aria-labelledby="overlay-1-label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="overlay-1-label">{{ book.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="author">Book.title</p>
+                        <p class="published">{{ book.publication_date }}</p>
+                        <p class="synopsis">{{ book.description }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Overlay Content -->
+  
+              </li>
+              {% endif %}
+              <!-- Repeat the rest of the book items -->
+              {% endfor%}
+            </ul>
+            <ul class="row tab-pane " id="biography">
+  
+              <!-- Repeat the list items with appropriate Bootstrap classes -->
+              <!-- For example, the first book-item will be as follows: -->
+              {% for book in books %}
+              {% if book.category == 'Biography' %}
+              <li class="book-item col-12 col-md-6 d-flex" >
+                <div class="bk-img">
+                  <div class="bk-wrapper">
+                    <div class="bk-book bk-bookdefault">
+                      <div class="bk-front">
+                        <div class="bk-cover">
+                          <img src="{% static './book_covers/' %}{{ book.book_cover }}" alt="{{ book.book_cover }}" width="152.17px" height="218.12px">
+                        </div>
+                      </div>
+                      <div class="bk-back"></div>
+                      <div class="bk-left"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-details">
+                  <h3 class="book-item_title">{{ book.title }}</h3>
+                  <p class="author">{{ book.author }} &bull; {{ book.publication_date }}</p>
+                  <p>{{ book.description }}</p>
+                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#overlay-1">Details</a>
+                </div>
+  
+                <!-- Overlay Content -->
+                <div class="modal fade" id="overlay-1" tabindex="-1" aria-labelledby="overlay-1-label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="overlay-1-label">{{ book.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="author">Book.title</p>
+                        <p class="published">{{ book.publication_date }}</p>
+                        <p class="synopsis">{{ book.description }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Overlay Content -->
+  
+              </li>
+              {% endif %}
+              <!-- Repeat the rest of the book items -->
+              {% endfor%}
+            </ul>
+            <ul class="row tab-pane" id="political">
+  
+              <!-- Repeat the list items with appropriate Bootstrap classes -->
+              <!-- For example, the first book-item will be as follows: -->
+              {% for book in books %}
+              {% if book.category == '' %}
+              <li class="book-item col-12 col-md-6 d-flex" >
+                <div class="bk-img">
+                  <div class="bk-wrapper">
+                    <div class="bk-book bk-bookdefault">
+                      <div class="bk-front">
+                        <div class="bk-cover">
+                          <img src="{% static './book_covers/' %}{{ book.book_cover }}" alt="{{ book.book_cover }}" width="152.17px" height="218.12px">
+                        </div>
+                      </div>
+                      <div class="bk-back"></div>
+                      <div class="bk-left"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-details">
+                  <h3 class="book-item_title">{{ book.title }}</h3>
+                  <p class="author">{{ book.author }} &bull; {{ book.publication_date }}</p>
+                  <p>{{ book.description }}</p>
+                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#overlay-1">Details</a>
+                </div>
+  
+                <!-- Overlay Content -->
+                <div class="modal fade" id="overlay-1" tabindex="-1" aria-labelledby="overlay-1-label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="overlay-1-label">{{ book.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="author">Book.title</p>
+                        <p class="published">{{ book.publication_date }}</p>
+                        <p class="synopsis">{{ book.description }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Overlay Content -->
+  
+              </li>
+              {% endif %}
+              <!-- Repeat the rest of the book items -->
+              {% endfor%}
+            </ul>
+            <ul class="row tab-pane " id="fiction">
+  
+              <!-- Repeat the list items with appropriate Bootstrap classes -->
+              <!-- For example, the first book-item will be as follows: -->
+              {% for book in books %}
+              {% if book.category == 'Fiction' %}
+              <li class="book-item col-12 col-md-6 d-flex" >
+                <div class="bk-img">
+                  <div class="bk-wrapper">
+                    <div class="bk-book bk-bookdefault">
+                      <div class="bk-front">
+                        <div class="bk-cover">
+                          <img src="{% static './book_covers/' %}{{ book.book_cover }}" alt="{{ book.book_cover }}" width="152.17px" height="218.12px">
+                        </div>
+                      </div>
+                      <div class="bk-back"></div>
+                      <div class="bk-left"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="item-details">
+                  <h3 class="book-item_title">{{ book.title }}</h3>
+                  <p class="author">{{ book.author }} &bull; {{ book.publication_date }}</p>
+                  <p>{{ book.description }}</p>
+                  <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#overlay-1">Details</a>
+                </div>
+  
+                <!-- Overlay Content -->
+                <div class="modal fade" id="overlay-1" tabindex="-1" aria-labelledby="overlay-1-label" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="overlay-1-label">{{ book.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="author">Book.title</p>
+                        <p class="published">{{ book.publication_date }}</p>
+                        <p class="synopsis">{{ book.description }}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Preview</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of Overlay Content -->
+  
+              </li>
+              {% endif %}
+              <!-- Repeat the rest of the book items -->
+              {% endfor%}
+            </ul>
+          </div>
+        
+        </section>
+  
+      </div>
+     </section>
+  
+    
+    <!--====== BOOK PORTFOLIO PART ENDS ======-->
+ {% include "footer.html" %}
+ 
+</body>
+</html>

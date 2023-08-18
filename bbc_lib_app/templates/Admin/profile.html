@@ -1,0 +1,286 @@
+{% extends 'Admin/base.html' %}
+{% load static %}
+{% block content %}
+
+  <div class="col-md-12">
+        <div class="col">
+            <div class="row">
+              <div class="col mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="e-profile">
+                      <div class="row">
+                        <div class="col-12 col-sm-auto mb-3">
+                          <div class="mx-auto" style="width: 140px;">
+                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                              {% if user.profile_image %}
+                              <img src="{% static './profile_images/' %}{{user.profile_image}}.jpg " alt="{{ user.profile_image }} Cover" width="140px" height="140px" >
+                              {% else %}
+                              <img src="{% static './profile_images/default.png' %}" alt="Default Cover" width="140px" height="140px">
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                          <div class="text-center text-sm-left mb-2 mb-sm-0">
+                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.name}}</h4>
+                            <p class="mb-0">{{user.username}}</p>
+                            <div class="text-muted"><small>{{ user.last_login }}</small></div>
+                            <div class="mt-2">
+                              <button class="btn btn-dark" type="button">
+                                <span>Change Photo</span>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="text-center text-sm-right">
+                            <span class="badge badge-dark">{{user.role}}</span>
+                            <div class="text-muted"><small>{{ user.date_joined }}</small></div>
+                            <figcaption>
+                              <p>
+                              <a href="#">
+                                  <span class="fa fa-star-o" style="color: goldenrod;"></span>
+                              </a>
+                              <a href="#">
+                                  <span class="fa fa-star-o" style="color: goldenrod;"></span>
+                              </a>
+                              <a href="#">
+                                  <span class="fa fa-star" style="color: goldenrod;"></span>
+                              </a>
+                              <a href="#">
+                                  <span class="fa fa-star" style="color: goldenrod;"></span>
+                              </a>
+                              <a href="#">
+                                   <span class="fa fa-star" style="color: goldenrod;"></span>
+                              </a> 
+                              </p>
+                          </figcaption>
+                          </div>
+                        </div>
+                      </div>
+                      <ul class="nav nav-tabs">
+                        <li class="nav-item"><a href="#profile-tab" data-toggle="tab" class="active nav-link"> Profile View</a></li>
+                        <li class="nav-item"><a href="#qrcode-tab" data-toggle="tab" class="nav-link">Qr Code View</a></li>
+                        <li class="nav-item"><a href="#edit-profile" data-toggle="tab" class="nav-link">Edit Profile</a></li>
+                      </ul>
+                      <div class="tab-content pt-3">
+                        
+                        <div class="tab-pane active" id="profile-tab">
+                          <div class="row">
+                            <div class="col">
+                              <h4>Profile View</h4>
+                              <!-- Add QR Code view content here -->
+          
+                                <div class="card">
+                                  <div class="card-body">
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Full Names</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.name }}</h5>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Username</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.username }}</h5>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.email }}</h5>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.address }}</h5>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone Number</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.phone_number }}</h5>
+                                    </div>
+                                    <!-- <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone Number</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.phone_number }}</h5>
+                                    </div> -->
+                                    <div class="row">
+                                      <div class="col-sm-3"></div>
+                                      <div class="col-sm-9 text-secondary">
+                                        <a href="#edit-profile" data-toggle="tab" class="nav-link" ><button class="btn btn-dark px-4"> Edit profile</button></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                    
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+
+                          <!-- QR Code Tab -->
+                        <div class="tab-pane" id="qrcode-tab">
+                          <div class="row">
+                            <div class="col">
+                              <h4>QR Code View</h4>
+                              <!-- Add QR Code view content here -->
+                              <!-- Display the QR code -->
+                              <div class="mt-4">
+                                <form action="{% url 'user_qr' user.id %}" method="post">
+                                  {% csrf_token %} 
+                                  <button class="btn btn-dark" id="qr-generate" type="submit">Generate QRCode</button>
+                                </form>
+                              </div>
+
+                              <div class="mt-4 d-flex align-items-center justify-content-center">
+                                <img src=" {% static './user_qrcodes/' %}{{user.qr_code_image}}" alt="QR Code" class="img-thumbnail">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="edit-profile">
+                          <div class="row">
+                            <div class="col">
+                              <h4>Profile Edit</h4>
+                              <!-- Add QR Code view content here -->
+                              <form class="form" action="{% url 'manage_user' %}" method="POST" enctype="multipart/form-data" novalidate="">
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Full Name</label>
+                                          <input class="form-control" type="text" name="name" value="{{ user.name }}">
+                                        </div>
+                                      </div>
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Username</label>
+                                          <input class="form-control" type="text" name="username" value="{{ user.username }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label> Upload Profile Picture</label>
+                                          <input type="file" name="profile_image" class="form-control-file" accept="image/*" class="btn btn-secondary" required>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Email</label>
+                                          <input class="form-control" type="text" name="{{ user.email }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Email</label>
+                                          <input class="form-control" type="text" name="email" value="{{ user.email }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Address</label>
+                                          <input class="form-control" type="text" name="address" value="{{ user.address }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Phone Number</label>
+                                          <input class="form-control" type="text" name="phone_number" value="{{ user.phone_number }}" >
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-12 col-sm-6 mb-3">
+                                    <div class="mb-2"><b>Change Password</b></div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Current Password</label>
+                                          <input class="form-control" type="password" placeholder="••••••">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>New Password</label>
+                                          <input class="form-control" type="password" placeholder="••••••">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                          <input class="form-control" type="password" placeholder="••••••"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col d-flex justify-content-end">
+                                    <button class="btn btn-secondary" type="submit">Save Changes</button>
+                                  </div>
+                                </div>
+                              </form>
+            
+                    
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- <div class="col-12 col-md-3 mb-3">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="px-xl-3">
+                      <button class="btn btn-block btn-secondary">
+                        <i class="fa fa-sign-out"></i>
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title font-weight-bold">Support</h6>
+                    <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                    <button type="button" class="btn btn-primary">Contact Us</button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

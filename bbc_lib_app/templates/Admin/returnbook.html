@@ -1,0 +1,25 @@
+{% extends 'Admin/base.html' %}
+{% load static %}
+{% block content %}
+<h1>Return Book</h1>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <form action="{% url 'returnbook' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <div>
+                <label for="borrower">Borrower</label>
+                <input type="text" class="form-control" id="borrower" name="borrower" required>
+            </div>
+            <label for="book_id">Book ID</label>
+            <input type="text" class="form-control" id="book_id" name="book_id" required>
+        </div>
+        <button type="submit" class="btn">Return Book</button>
+    </form>
+
+
+{% endblock %}
+

@@ -1,0 +1,975 @@
+{% extends 'Admin/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+
+.id-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6ebe0;
+    flex-direction: row;
+    flex-flow: wrap;
+
+}
+
+.font{
+    height: 375px;
+    width: 250px;
+    position: relative;
+    border-radius: 10px;
+}
+
+.top{
+    height: 30%;
+    width: 100%;
+    background-color: maroon;
+    position: relative;
+    z-index: 5;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.bottom{
+    height: 70%;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.top img{
+    height: 100px;
+    width: 100px;
+    background-color: #e6ebe0;
+    border-radius: 10px;
+    position: absolute;
+    top:60px;
+    left: 75px;
+}
+.bottom p{
+    position: relative;
+    top: 60px;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 20px;
+    text-emphasis: spacing;
+}
+.bottom .desi{
+    font-size:12px;
+    color: grey;
+    font-weight: normal;
+}
+.bottom .no{
+    font-size: 15px;
+    font-weight: normal;
+}
+.barcode img
+{
+    height: 65px;
+    width: 65px;
+    text-align: center;
+    margin: 5px;
+}
+.barcode{
+    text-align: center;
+    position: relative;
+    top: 70px;
+}
+
+.back
+{
+    height: 375px;
+    width: 250px;
+    border-radius: 10px;
+    background-color: maroon;
+
+}
+.qr img{
+    height: 80px;
+    width: 100%;
+    margin: 20px;
+    background-color: white;
+}
+.Details {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 25px;
+}
+
+
+.details-info{
+    color: white;
+    text-align: left;
+    padding: 5px;
+    line-height: 20px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 22px;
+}
+
+.logo {
+    height: 60px;
+    width: 90px;
+    padding: 40px;
+    border-radius: 50%;
+}
+
+.logo img{
+    height: 100%;
+    width: 100%;
+    color: white ;
+
+}
+.padding{
+    padding-right: 20px;
+}
+
+@media screen and (max-width:800px)
+{
+    .container{
+        height: 130vh;
+    }
+    .container .front{
+        margin-top: 50px;
+    }
+}
+@media screen and (max-width:800px)
+{
+    .container{
+        height: 130vh;
+    }
+    .container .front{
+        margin-top: 50px;
+    }
+
+}
+</style>
+ 
+<div class="col-md-12">
+        <div class="col">
+            <div class="row">
+              <div class="col mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="e-profile">
+                      <div class="row">
+                        <div class="col-12 col-sm-auto mb-3">
+                          <div class="mx-auto" style="width: 140px;">
+                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                              {% if user.profile_image %}
+                              <img src="{% static './profile_images/' %}{{user.profile_image}}.jpg " alt="{{ user.profile_image }} Cover" width="140px" height="140px" >
+                              {% else %}
+                              <img src="{% static './profile_images/default.png' %}" alt="Default Cover" width="140px" height="140px">
+                              {% endif %}
+                            </div>
+                            <div class="mt-2">
+                              <button class="btn btn-dark" type="button">
+                                <span>Change Photo</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                          <div class="text-center text-sm-left mb-2 mb-sm-0">
+                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user.name}}</h4>
+                            <p class="mb-0"><span class="badge badge-dark">{{user.role}}</span></p>
+                            <div>Date Joined: <small class="text-muted">{{ user.date_joined }}</small></div>
+                            <div class="text">Last Login: <small class="text-muted">{{ user.last_login }}</small></div>
+                            
+                          </div>
+                          <div class="text-center text-sm-right">
+                            <div class="">
+                              {% if user.badges <= 1 %}   
+                              <span class="badge badge-dark">Badge 1: First Badge</span>
+                              <div class="animated_badge animated_badge_1 hide mt-2">
+                                <div class="animated_stars">
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut yellow"></div>
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut"></div>
+                                    <div class="animated_star plus yellow"></div>
+                                </div>
+                                <svg class="animated_badge_svg" width="75" height="100" viewBox="0 0 75 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="badge_ribbon left"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="#A5ACB9" />
+                                    <path class="badge_ribbon left"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="#A5ACB9" />
+                                    <path class="badge_ribbon left"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="url(#paint0_linear)" />
+                                    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="16" y="57" width="44" height="43">
+                                        <path
+                                            d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                            fill="#999999" />
+                                        <path
+                                            d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                            fill="url(#paint1_linear)" />
+                                    </mask>
+                                    <g class="badge_ribbon left" mask="url(#mask0)">
+                                        <rect x="30" y="60" width="15" height="40" fill="#EAEDF2" />
+                                    </g>
+                                    <circle class="badge_circle" cx="37.5" cy="37.5" r="33.5" fill="#C0C6CF" stroke="#777E8B" stroke-width="8" />
+                                    <path class="badge_number" d="M36.272 45H38.772V30.7H36.572C36.332 32.28 35.292 32.82 32.832 32.88V34.78H36.272V45Z" fill="white" />
+                                    <defs>
+                                        <linearGradient id="paint0_linear" x1="38" y1="57" x2="38" y2="89.5" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#616468" />
+                                            <stop offset="1" stop-color="#A5ACB9" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint1_linear" x1="38" y1="57" x2="38" y2="89.5" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#27539F" />
+                                            <stop offset="1" stop-color="#71A1F4" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                              </div>
+                              {% endif %}
+                              {% if user.badges >= 2 %}
+                              <span class="badge badge-dark"> Second Badge</span>
+                              <div class="animated_badge animated_badge_2 hide">
+                                <div class="animated_stars">
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut yellow"></div>
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut"></div>
+                                    <div class="animated_star plus yellow"></div>
+                                </div>
+                                <svg class="animated_badge_svg" width="75" height="100" viewBox="0 0 75 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="badge_ribbon"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="#71A1F4" />
+                                    <path class="badge_ribbon"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="#71A1F4" />
+                                    <path class="badge_ribbon"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="url(#paint0_linear)" />
+                                    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="16" y="57" width="44" height="43">
+                                        <path
+                                            d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                            fill="#71A1F4" />
+                                        <path
+                                            d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                            fill="url(#paint1_linear)" />
+                                    </mask>
+                                    <g class="badge_ribbon" mask="url(#mask0)">
+                                        <rect x="30" y="60" width="15" height="40" fill="#ABC7F9" />
+                                    </g>
+                                    <circle class="badge_circle" cx="37.5" cy="37.5" r="33.5" fill="#71A1F4" stroke="#CEDCF5" stroke-width="8" />
+                                    <path class="badge_number"
+                                        d="M41.1783 45V42.86H35.0183C37.2183 40.82 41.1783 38.44 41.1783 34.8C41.1783 32.3 39.3983 30.42 36.4383 30.42C33.3583 30.42 31.6983 32.54 31.6983 35.14C31.6983 35.18 31.7183 35.22 31.7183 35.28H34.0983C34.1183 33.76 34.8383 32.62 36.4383 32.62C37.8183 32.62 38.6383 33.52 38.6383 34.86C38.6383 36.22 37.8583 37.38 36.0583 39.04C34.3783 40.62 31.8183 42.92 31.8183 42.92V45H41.1783Z"
+                                        fill="white" />
+                                    <defs>
+                                        <linearGradient id="paint0_linear" x1="38" y1="57" x2="38" y2="89.5" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#27539F" />
+                                            <stop offset="1" stop-color="#71A1F4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint1_linear" x1="38" y1="57" x2="38" y2="89.5" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#27539F" />
+                                            <stop offset="1" stop-color="#71A1F4" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                              </div>
+                              {% endif %}
+                              {% if user.badges >= 3 %}
+                              <span class="badge badge-dark">Third Badge</span>
+                              <div class="animated_badge animated_badge_3 hide">
+                                <div class="animated_stars">
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut yellow"></div>
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut"></div>
+                                    <div class="animated_star plus yellow"></div>
+                                </div>
+                                <svg class="animated_badge_svg" width="75" height="100" viewBox="0 0 75 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="badge_ribbon"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="#71A1F4" />
+                                    <path class="badge_ribbon"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="#71A1F4" />
+                                    <path class="badge_ribbon"
+                                        d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                        fill="url(#paint0_linear)" />
+                                    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="16" y="57" width="44" height="43">
+                                        <path
+                                            d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                            fill="#71A1F4" />
+                                        <path
+                                            d="M16 86.7506V62C16 59.2386 18.2386 57 21 57H55C57.7614 57 60 59.2386 60 62V86.8112C60 88.7561 58.8722 90.5246 57.1087 91.3448L40.5616 99.0411C39.2517 99.6504 37.7424 99.6633 36.4223 99.0766L18.9693 91.3197C17.1637 90.5172 16 88.7266 16 86.7506Z"
+                                            fill="url(#paint1_linear)" />
+                                    </mask>
+                                    <g class="badge_ribbon" mask="url(#mask0)">
+                                        <rect x="23" y="60" width="8" height="40" fill="#ABC7F9" />
+                                        <rect x="43" y="60" width="8" height="40" fill="#ABC7F9" />
+                                    </g>
+                                    <circle cx="37.5" cy="37.5" r="33.5" fill="#C0C6CF" stroke="#C0C6CF" stroke-width="8" />
+                                    <circle class="badge_circle" cx="37.5" cy="37.5" r="29.5" fill="#C0C6CF" stroke="#EAEDF2" stroke-width="4" />
+                                    <path class="badge_number"
+                                        d="M32.72 40.88C32.9 43.36 34.62 45.26 37.64 45.26C40.72 45.26 42.66 43.42 42.66 40.78C42.66 39.02 41.72 37.68 40.02 37.12C41.16 36.52 41.94 35.5 41.94 34.16C41.94 31.94 40.28 30.42 37.7 30.42C35.12 30.42 33.48 32.04 33.42 34.26H35.72C35.84 33.14 36.6 32.5 37.64 32.5C38.64 32.5 39.46 33.06 39.48 34.24C39.48 35.76 38.24 36.24 36.66 36.24V38.24H37.22C38.86 38.24 40.14 38.96 40.14 40.7C40.14 42.06 39.2 43.16 37.7 43.16C36.14 43.16 35.32 42.24 35.16 40.88H32.72Z"
+                                        fill="white" />
+                                    <defs>
+                                        <linearGradient id="paint0_linear" x1="38" y1="57" x2="38" y2="89.5" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#27539F" />
+                                            <stop offset="1" stop-color="#71A1F4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint1_linear" x1="38" y1="57" x2="38" y2="89.5" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#27539F" />
+                                            <stop offset="1" stop-color="#71A1F4" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                                
+                              {% endif %}
+                              {% if user.badges >= 4 %}
+                              <span class="badge badge-dark">Fourth Badge</span>
+                              <div class="animated_badge animated_badge_4 hide">
+                                <div class="animated_stars">
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut yellow"></div>
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut"></div>
+                                    <div class="animated_star plus yellow"></div>
+                                </div>
+                                <svg class="animated_badge_svg" width="75" height="98" viewBox="0 0 75 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="badge_ribbon right"
+                                        d="M18 96.2589L18 60C18 59.4477 18.4477 59 19 59H57.3843C57.9366 59 58.3843 59.4477 58.3843 60V96.2334C58.3843 96.9469 57.6586 97.4308 56.9999 97.1566L39.0269 89.6734C38.7859 89.573 38.5153 89.5709 38.2728 89.6674L19.3697 97.188C18.7131 97.4493 18 96.9656 18 96.2589Z"
+                                        fill="#FCC838" />
+                                    <path class="badge_ribbon right"
+                                        d="M18 96.2589L18 60C18 59.4477 18.4477 59 19 59H57.3843C57.9366 59 58.3843 59.4477 58.3843 60V96.2334C58.3843 96.9469 57.6586 97.4308 56.9999 97.1566L39.0269 89.6734C38.7859 89.573 38.5153 89.5709 38.2728 89.6674L19.3697 97.188C18.7131 97.4493 18 96.9656 18 96.2589Z"
+                                        fill="url(#paint0_linear)" />
+                                    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="17" y="58" width="42" height="38">
+                                        <path
+                                            d="M18 90.3625V64C18 61.2386 20.2386 59 23 59H53.3843C56.1457 59 58.3843 61.2386 58.3843 64V90.2351C58.3843 93.8024 54.7557 96.2222 51.4624 94.851L40.5301 90.2992C39.3254 89.7977 37.9723 89.7869 36.7599 90.2693L24.8484 95.0083C21.5653 96.3145 18 93.8959 18 90.3625Z"
+                                            fill="#71A1F4" />
+                                        <path
+                                            d="M18 90.3625V64C18 61.2386 20.2386 59 23 59H53.3843C56.1457 59 58.3843 61.2386 58.3843 64V90.2351C58.3843 93.8024 54.7557 96.2222 51.4624 94.851L40.5301 90.2992C39.3254 89.7977 37.9723 89.7869 36.7599 90.2693L24.8484 95.0083C21.5653 96.3145 18 93.8959 18 90.3625Z"
+                                            fill="url(#paint1_linear)" />
+                                        <path
+                                            d="M18 90.3625V64C18 61.2386 20.2386 59 23 59H53.3843C56.1457 59 58.3843 61.2386 58.3843 64V90.2351C58.3843 93.8024 54.7557 96.2222 51.4624 94.851L40.5301 90.2992C39.3254 89.7977 37.9723 89.7869 36.7599 90.2693L24.8484 95.0083C21.5653 96.3145 18 93.8959 18 90.3625Z"
+                                            stroke="#8C62F5" />
+                                    </mask>
+                                    <g class="badge_ribbon right" mask="url(#mask0)">
+                                        <rect width="12.9378" height="46.9542" transform="matrix(0.99996 -0.008926 0.0199657 0.999801 32.0576 65.3011)"
+                                            fill="#FCD977" />
+                                    </g>
+                                    <circle cx="37.5" cy="37.5" r="33.5" fill="#DBDFE7" stroke="#8C62F5" stroke-width="8" />
+                                    <circle class="badge_circle" cx="37.5" cy="37.5" r="29.5" fill="#8C62F5" stroke="#D1C0FB" stroke-width="4" />
+                                    <path class="badge_number"
+                                        d="M43.16 39.98H41.28V30.7H39.04C39 30.76 37.64 32.78 36.82 33.96L32.54 40.12V42.08H39.02V45H41.28V42.08H43.16V39.98ZM39.06 33.9C39.04 34.58 39.02 35.68 39.02 36.46V39.98H35.02C35.02 39.98 35.84 38.76 36.52 37.78L37.46 36.4C38.1 35.46 38.86 34.16 39.02 33.9H39.06Z"
+                                        fill="#E3D9FC" />
+                                    <defs>
+                                        <linearGradient id="paint0_linear" x1="38.1921" y1="59" x2="38.1921" y2="97.1461"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#DFAC28" />
+                                            <stop offset="1" stop-color="#FCC838" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint1_linear" x1="38.1921" y1="59" x2="38.1921" y2="97.1461"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#27539F" />
+                                            <stop offset="1" stop-color="#71A1F4" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                              {% endif %}
+
+                              {% if user.badges >= 5 %}
+                              <span class="badge badge-dark">Fifth Badge</span>
+                              <div class="animated_badge animated_badge_5 hide">
+                                <div class="animated_stars">
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut yellow"></div>
+                                    <div class="animated_star plus"></div>
+                                    <div class="animated_star donut"></div>
+                                    <div class="animated_star plus yellow"></div>
+                                </div>
+                                <svg class="animated_badge_svg" width="84" height="99" viewBox="0 0 84 99" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path class="badge_ribbon"
+                                        d="M0.761166 82.9447L17.3041 50.8886C17.5574 50.3979 18.1606 50.2053 18.6513 50.4586L43.875 63.4756C44.3658 63.7289 44.5583 64.332 44.305 64.8228L27.7788 96.8466C27.4294 97.5236 26.4817 97.5769 26.0586 96.9435L17.8756 84.694C17.6881 84.4133 17.3716 84.2461 17.0341 84.2495L1.65981 84.4033C0.906487 84.4108 0.415676 83.6142 0.761166 82.9447Z"
+                                        fill="#F04152" />
+                                    <path class="badge_ribbon"
+                                        d="M0.761166 82.9447L17.3041 50.8886C17.5574 50.3979 18.1606 50.2053 18.6513 50.4586L43.875 63.4756C44.3658 63.7289 44.5583 64.332 44.305 64.8228L27.7788 96.8466C27.4294 97.5236 26.4817 97.5769 26.0586 96.9435L17.8756 84.694C17.6881 84.4133 17.3716 84.2461 17.0341 84.2495L1.65981 84.4033C0.906487 84.4108 0.415676 83.6142 0.761166 82.9447Z"
+                                        fill="url(#paint0_linear)" />
+                                    <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="1" y="50" width="44" height="46">
+                                        <path
+                                            d="M3.80623 77.0441L15.4697 54.4432C16.7361 51.9893 19.752 51.0266 22.2059 52.293L40.3204 61.6412C42.7743 62.9076 43.737 65.9235 42.4707 68.3774L30.8904 90.817C29.1437 94.2016 24.4052 94.4685 22.2895 91.3014L19.0777 86.4935C18.1402 85.09 16.5578 84.2543 14.8701 84.2712L8.29946 84.3369C4.53283 84.3745 2.07879 80.3915 3.80623 77.0441Z"
+                                            fill="#71A1F4" />
+                                        <path
+                                            d="M3.80623 77.0441L15.4697 54.4432C16.7361 51.9893 19.752 51.0266 22.2059 52.293L40.3204 61.6412C42.7743 62.9076 43.737 65.9235 42.4707 68.3774L30.8904 90.817C29.1437 94.2016 24.4052 94.4685 22.2895 91.3014L19.0777 86.4935C18.1402 85.09 16.5578 84.2543 14.8701 84.2712L8.29946 84.3369C4.53283 84.3745 2.07879 80.3915 3.80623 77.0441Z"
+                                            fill="url(#paint1_linear)" />
+                                    </mask>
+                                    <g class="badge_ribbon" mask="url(#mask0)">
+                                        <rect width="9.73445" height="46.9502" transform="matrix(0.894023 0.448022 -0.445194 0.895434 24.272 60.4499)"
+                                            fill="#FCD977" />
+                                    </g>
+                                    <path class="badge_ribbon right"
+                                        d="M56.5365 97.1074L38.5 65.8673C38.2239 65.389 38.3877 64.7774 38.866 64.5013L63.4476 50.3091C63.9259 50.0329 64.5375 50.1968 64.8137 50.6751L82.832 81.8838C83.2129 82.5435 82.7458 83.3698 81.9841 83.3836L67.2552 83.6511C66.9177 83.6572 66.6061 83.8332 66.4266 84.1191L58.2494 97.1392C57.8487 97.7772 56.9132 97.7598 56.5365 97.1074Z"
+                                        fill="#F04152" />
+                                    <path class="badge_ribbon right"
+                                        d="M56.5365 97.1074L38.5 65.8673C38.2239 65.389 38.3877 64.7774 38.866 64.5013L63.4476 50.3091C63.9259 50.0329 64.5375 50.1968 64.8137 50.6751L82.832 81.8838C83.2129 82.5435 82.7458 83.3698 81.9841 83.3836L67.2552 83.6511C66.9177 83.6572 66.6061 83.8332 66.4266 84.1191L58.2494 97.1392C57.8487 97.7772 56.9132 97.7598 56.5365 97.1074Z"
+                                        fill="url(#paint2_linear)" />
+                                    <mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="38" y="49" width="45" height="47">
+                                        <path
+                                            d="M53.2165 91.357L40.5 69.3314C39.1193 66.9399 39.9387 63.882 42.3301 62.5013L59.9835 52.3091C62.375 50.9283 65.4329 51.7477 66.8137 54.1392L79.4394 76.0076C81.3438 79.3061 79.0082 83.4376 75.2001 83.5068L69.419 83.6118C67.7314 83.6424 66.1732 84.5224 65.2756 85.9517L61.7808 91.5162C59.7774 94.7061 55.0999 94.6192 53.2165 91.357Z"
+                                            fill="#71A1F4" />
+                                        <path
+                                            d="M53.2165 91.357L40.5 69.3314C39.1193 66.9399 39.9387 63.882 42.3301 62.5013L59.9835 52.3091C62.375 50.9283 65.4329 51.7477 66.8137 54.1392L79.4394 76.0076C81.3438 79.3061 79.0082 83.4376 75.2001 83.5068L69.419 83.6118C67.7314 83.6424 66.1732 84.5224 65.2756 85.9517L61.7808 91.5162C59.7774 94.7061 55.0999 94.6192 53.2165 91.357Z"
+                                            fill="url(#paint3_linear)" />
+                                    </mask>
+                                    <g class="badge_ribbon right" mask="url(#mask1)">
+                                        <rect width="9.73445" height="46.9502" transform="matrix(0.860033 -0.510239 0.512954 0.858416 50.3103 65.1699)"
+                                            fill="#FCD977" />
+                                    </g>
+                                    <circle cx="40.5" cy="37.5" r="33.5" fill="#DBDFE7" stroke="#FCD977" stroke-width="8" />
+                                    <circle class="badge_circle" cx="40.5" cy="37.5" r="29.5" fill="#FCD977" stroke="#FFA826" stroke-width="4" />
+                                    <path class="badge_number"
+                                        d="M35.26 38.42C36.04 38.52 36.74 38.66 37.5 38.78C37.86 38.1 38.56 37.56 39.64 37.56C41.26 37.56 42.22 38.8 42.22 40.34C42.22 42 41.28 43.2 39.62 43.2C38.18 43.2 37.4 42.28 37.18 41.08H34.72C34.98 43.56 36.86 45.3 39.68 45.3C42.68 45.3 44.7 43.14 44.7 40.26C44.7 37.42 42.86 35.46 40.16 35.46C39.16 35.46 38.36 35.76 37.68 36.2L37.84 35.06C37.94 34.34 37.98 33.62 38.1 32.9H43.7V30.7H36.14C35.84 33.32 35.58 35.78 35.26 38.42Z"
+                                        fill="#FFA826" />
+                                    <defs>
+                                        <linearGradient id="paint0_linear" x1="31.2632" y1="56.9671" x2="13.7695" y2="90.8654"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#A31523" />
+                                            <stop offset="1" stop-color="#F04152" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint1_linear" x1="31.2632" y1="56.9671" x2="13.7695" y2="90.8654"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#27539F" />
+                                            <stop offset="1" stop-color="#71A1F4" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint2_linear" x1="51.1568" y1="57.4052" x2="70.2299" y2="90.4407"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#A31523" />
+                                            <stop offset="1" stop-color="#F04152" stop-opacity="0" />
+                                        </linearGradient>
+                                        <linearGradient id="paint3_linear" x1="51.1568" y1="57.4052" x2="70.2299" y2="90.4407"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#27539F" />
+                                            <stop offset="1" stop-color="#71A1F4" stop-opacity="0" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ul class="nav nav-tabs">
+                        <li class="nav-item"><a href="#profile-tab" data-toggle="tab" class="active nav-link"> Profile View</a></li>
+                        <li class="nav-item"><a href="#borrowedBooks-tab" data-toggle="tab" class="nav-link">Borrowed Books</a></li>
+                        <li class="nav-item"><a href="#qrcode-tab" data-toggle="tab" class="nav-link">Qr Code View</a></li>
+                        <li class="nav-item"><a href="#idcard-tab" data-toggle="tab" class="nav-link">User Id Card</a></li>
+                        <li class="nav-item"><a href="#edit-profile" data-toggle="tab" class="nav-link">Edit Profile</a></li>
+                      </ul>
+                      <div class="tab-content pt-3">
+                        
+                        <div class="tab-pane active" id="profile-tab">
+                          <div class="row">
+                            <div class="col">
+                              <h4>Profile View</h4>
+                              <!-- Add QR Code view content here -->
+          
+                                <div class="card">
+                                  <div class="card-body">
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Full Names</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.name }}</h5>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Username</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.username }}</h5>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.email }}</h5>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.address }}</h5>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone Number</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.phone_number }}</h5>
+                                    </div>
+                                    <!-- <div class="row mb-3">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone Number</h6>
+                                      </div>
+                                      <h5 class="card-title">{{ user.phone_number }}</h5>
+                                    </div> -->
+                                    <div class="row">
+                                      <div class="col-sm-3"></div>
+                                      <div class="col-sm-9 text-secondary">
+                                        <a href="#edit-profile" data-toggle="tab" class="nav-link" ><button class="btn btn-dark px-4"> Edit profile</button></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                    
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+                        <!-- Borrowed Books Tab -->
+                        <div class="tab-pane" id="borrowedBooks-tab">
+                          <div class="row">
+                            <div class="col">
+                              <h4>Borrowed Books</h4>
+                              <!-- Add QR Code view content here -->
+          
+                                <div class="card">
+                                  <div class="card-body">
+                                    <div class="container">
+                                      <div class="table-wrapper">
+                                        <div class="table-title">
+                                            <div class="row">
+                                                <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
+                                                    <h2 class="ml-lg-2 text-white">Borrowed Books</h2>
+                                                </div>
+                                                <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
+                                                    <a href="#addBorrowModal" class="btn btn-success" data-toggle="modal">
+                                                        <i class="material-icons">&#xE147;</i> <span>Add New Borrow</span>
+                                                    </a>
+                                                    <a href="#returnBookModal" class="btn btn-danger" data-toggle="modal">
+                                                        <i class="material-icons">arrow_back</i> <span>Return Book</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <span class="custom-checkbox">
+                                                            <input type="checkbox" id="selectAll">
+                                                            <label for="selectAll"></label>
+                                                        </span>
+                                                    </th>
+                                                    <th>User</th>
+                                                    <th>Book</th>
+                                                    <th>Borrow Date</th>
+                                                    <th>Due Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody> 
+                                              {% for borrow_book in user.borrowbook_set.all %} 
+                                              <tr>
+                                                    <td>
+                                                        <span class="custom-checkbox">
+                                                            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                            <label for="checkbox1"></label>
+                                                        </span>
+                                                    </td>
+                                                    <td>{{ borrow_book.borrower.username }}</td>
+                                                    <td>{{ borrow_book.book.title }}</td>
+                                                    <td>{{ borrow_book.borrow_date }}</td>
+                                                    <td>{{ borrow_book.due_date }}</td>
+                                                    <td>
+                                                      <a href="{% url 'returnbook' %}" class="return" data-toggle="modal" data-target="#returnBookModal">
+                                                        <i class="material-icons" data-toggle="tooltip" title="Return">arrow_back</i>
+                                                    </a>  
+                                                      <a href="{% url 'edit_borrow' %}" class="edit" data-toggle="modal" data-target="#editBorrowModal{{borrow_book.borrow_id}}">
+                                                            <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                                        </a>
+                                                        
+                                                    </td>
+                                                </tr>
+                                                <!-- Edit Modal HTML -->
+                                                <div id="editBorrowModal{{borrow_book.borrow_id}}" class="modal fade">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <form action="{% url 'edit_borrow' %}" method="POST"> {% csrf_token %} <div class="modal-header">
+                                                                    <h4 class="modal-title">Edit Borrows</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label>Borrower</label>
+                                                                        <input type="text" name="borrower" value="{{ borrow.borrower }}" class="form-control" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Book</label>
+                                                                        <input type="text" name="book" value="{{ borrow.book }}" class="form-control" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Borrow Date</label>
+                                                                        <input type="date" name="borrow_date" value="{{ borrow.borrow_date }}" class="form-control" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>Due date</label>
+                                                                        <input type="date" name="due_date" value="{{ borrow.due_date }}" class="form-control" required>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                        <input type="submit" class="btn btn-info" value="Save">
+                                                                    </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Return Book Modal HTML -->
+                                                <div id="returnBookModal" class="modal fade">
+                                                    <div class="modal-dialog">
+                                                      <h1>Return Book</h1>
+
+                                                      {% if error %}
+                                                          <div class="alert alert-danger">{{ error }}</div>
+                                                      {% endif %}
+                                                  
+                                                      <form action="{% url 'returnbook' %}" method="post">
+                                                          {% csrf_token %}
+                                                          <div class="form-group">
+                                                              <div>
+                                                                  <label for="borrower">Borrower</label>
+                                                                  <input type="text" class="form-control" id="borrower" name="borrower" required>
+                                                              </div>
+                                                              <label for="book_id">Book ID</label>
+                                                              <input type="text" class="form-control" id="book_id" name="book_id" required>
+                                                          </div>
+                                                          <button type="submit" class="btn">Return Book</button>
+                                                      </form>
+                                                    </div>
+                                                </div> 
+                                                {% endfor %}
+                                            </tbody>
+                                            <!-- Add Modal HTML -->
+                                            <div id="addBorrowModal" class="modal fade">
+                                              <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <form action="{% url 'add_borrow' %}" method="POST">
+                                                  {% csrf_token %}
+                                                  <div class="modal-header">
+                                                    <h4 class="modal-title">Add Borrow</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <div class="form-group">
+                                                      <label>Borrower</label>
+                                                      <input type="text" name="borrower" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <label>Book</label>
+                                                      <input type="text" name="book" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <label>Borrow Date</label>
+                                                      <input type="date" name="borrow_date" class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <label>Due date</label>
+                                                      <input type="date" name="due_date" class="form-control" required>
+                                                    </div>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                    <input type="submit" class="btn btn-success" value="Add">
+                                                  </div>
+                                                </form>
+                                              </div>
+                                              </div>
+                                              </div>
+                                        </table>
+
+                                        <div class="clearfix">
+                                            <div class="hint-text">Showing <b>1</b> out of <b>25</b> entries</div>
+                                            <ul class="pagination">
+                                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                                <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                            </ul>
+                                        
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                    
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+
+                          <!-- QR Code Tab -->
+                        <div class="tab-pane" id="qrcode-tab">
+                          <div class="row">
+                            <div class="col">
+                              <h4>QR Code View</h4>
+                              <!-- Add QR Code view content here -->
+                              <!-- Display the QR code -->
+                              <div class="mt-4">
+                                <form action="{% url 'user_qr' user.id%}" method="post">
+                                  {% csrf_token %} 
+                                  <button class="btn btn-dark" id="qr-generate" type="submit">Generate QRCode</button>
+                                </form>
+                              </div>
+
+                              <div class="mt-4 d-flex align-items-center justify-content-center">
+                                <img src=" {% static './user_qrcodes/' %}{{user.qr_code_image}}" alt="QR Code" class="img-thumbnail">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- User Id Tab -->
+                        <div class="tab-pane" id="idcard-tab">
+                          <div class="row">
+                            <div class="col">
+                              <h4>User Id Card</h4>
+                              <div class="mt-4">
+                                <form action="{% url 'user_qr' user.id%}" method="post">
+                                  {% csrf_token %} 
+                                  <button class="btn btn-dark" id="qr-id-card" type="submit">Generate Id Card</button>
+                                </form>
+                              </div>
+
+                              <div class="mt-4 d-flex align-items-center justify-content-center">
+                                <div class="id-container">
+                                  <div class="padding">
+                                      <div class="font">
+                                          <div class="top">
+                                            {% if user.profile_image %}
+                                            <img src="{% static './profile_images/' %}{{user.profile_image}}.jpg " alt="{{ user.profile_image }} Cover" >
+                                            {% else %}
+                                            <img src="{% static './profile_images/default.png' %}" alt="Default Cover">
+                                            {% endif %}
+                                          </div>
+                                          <div class="bottom">
+                                              <p>{{user.name}}</p>
+                                              <p class="desi">{{user.username}}</p>
+                                              <div class="barcode">
+                                                <img src=" {% static './user_qrcodes/' %}{{user.qr_code_image}}" alt="QR Code" class="img-thumbnail">
+                                              </div>
+                                              <br>
+                                              <p class="no">{{user.phone_number}}</p>
+                                              <p class="no">If Found Please return to the Above Person or turnover to see more information</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="back">
+                                      <h3 class="Details">Information</h3>
+                                      <hr class="hr">
+                                      <div class="details-info">
+                                          <p><b>Email : </b></p>
+                                          <p>{{user.email}}</p>Phone Number: </b></p>
+                                          <p>{{user.phone_number}}</p>
+                                          <p><b>Official Residence:</b></p>
+                                          <p>{{user.address}}</p>
+                                      </div>
+                                          <div class="logo" style="text-align: center; left: 50%; right: 50%; align-items: center;">
+                                            <img src=" {% static './images/Baptists_for_Africa.png' %}" alt="QR Code" class="img-thumbnail" x>
+                                          </div>
+                                          <p>Baptists for Africa Library System</p>
+                                          <hr>
+                                  </div>
+
+                                  <div class="modal-sub-footer" style="display: block;">
+                                    <button id="print-card" class="btn btn-dark btn-sm bg-gradient rounded-0 me-2" type="button"><i class="fa fa-print"></i> Print</button>
+                                  </div>
+                              </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="tab-pane" id="edit-profile">
+                          <div class="row">
+                            <div class="col">
+                              <h4>Profile Edit</h4>
+                              <!-- Add QR Code view content here -->
+                              <form class="form" action="{% url 'manage_user' %}" method="POST" enctype="multipart/form-data" novalidate="">
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Full Name</label>
+                                          <input class="form-control" type="text" name="name" value="{{ user.name }}">
+                                        </div>
+                                      </div>
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Username</label>
+                                          <input class="form-control" type="text" name="username" value="{{ user.username }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label> Upload Profile Picture</label>
+                                          <input type="file" name="profile_image" class="form-control-file" accept="image/*" class="btn btn-secondary" required>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Email</label>
+                                          <input class="form-control" type="text" name="{{ user.email }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Email</label>
+                                          <input class="form-control" type="text" name="email" value="{{ user.email }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Address</label>
+                                          <input class="form-control" type="text" name="address" value="{{ user.address }}">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Phone Number</label>
+                                          <input class="form-control" type="text" name="phone_number" value="{{ user.phone_number }}" >
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-12 col-sm-6 mb-3">
+                                    <div class="mb-2"><b>Change Password</b></div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Current Password</label>
+                                          <input class="form-control" type="password" placeholder="••••••">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>New Password</label>
+                                          <input class="form-control" type="password" placeholder="••••••">
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="form-group">
+                                          <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                          <input class="form-control" type="password" placeholder="••••••"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                                <div class="row">
+                                  <div class="col d-flex justify-content-end">
+                                    <button class="btn btn-secondary" type="submit">Save Changes</button>
+                                  </div>
+                                </div>
+                              </form>
+            
+                    
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- <div class="col-12 col-md-3 mb-3">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="px-xl-3">
+                      <button class="btn btn-block btn-secondary">
+                        <i class="fa fa-sign-out"></i>
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title font-weight-bold">Support</h6>
+                    <p class="card-text">Get fast, free help from our friendly assistants.</p>
+                    <button type="button" class="btn btn-primary">Contact Us</button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script defer>
+var print_btn = document.getElementById("print-card");
+var modalFooter = document.querySelector('.modal-sub-footer');
+modalFooter.insertBefore(print_btn, modalFooter.firstChild);
+
+print_btn.addEventListener("click", function() {
+    var h = document.head.cloneNode(true);
+    var style = document.querySelector("noscript#qr-style").innerHTML;
+    var card = document.querySelector("#id-card").cloneNode(true);
+    var el = document.createElement("div");
+
+    el.appendChild(h);
+    
+    var styleContainer = document.createElement("div");
+    styleContainer.innerHTML = style;
+    el.appendChild(styleContainer);
+
+    el.appendChild(card);
+
+    start_loader();
+    var nw = window.open("", "_blank", "width=900, height=900");
+    nw.document.write(el.innerHTML);
+    nw.document.close();
+
+    setTimeout(function() {
+        nw.print();
+        setTimeout(function() {
+            nw.close();
+            end_loader();
+        }, 300);
+    }, 300);
+});
+
+</script>
+{% endblock %}
+

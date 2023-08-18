@@ -1,0 +1,202 @@
+{% extends 'Admin/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    #scanner {
+        width: 100%;
+        height: 50vh;
+        margin: 0px auto;
+        position: relative;
+        object-fit: cover;
+        object-position: center center;
+    }
+ 
+</style>
+
+<div class="container-fluid main-container nav-effect-1">
+  <div class="main clearfix">
+      <!-- Header Content -->
+      <header id="header" class="page-header">
+          <div class="page-header-container row">
+              <!-- Logo -->
+              <div class="main-logo col-12 col-md-4">
+                  <a href="#" class="logo">The Library</a>
+              </div>
+
+              <div class="menu-search col-12 col-md-12">
+                  <!-- Search -->
+                  <form method="post" action="{% url 'user_profiles' %}">
+                  <div class="input-group mt-3">
+                        {% csrf_token %}
+                      <input
+                          id="search_book"
+                          type="text"
+                          class="form-control"
+                          name="query"
+                          placeholder="Search by Title or Author"
+                      />
+                      <div class="input-group-append">
+                          <button class="btn btn-dark" type="submit" >
+                              Search
+                          </button>
+                      </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="menu-search col-12 col-md-12">
+                <!-- Search -->
+                <div class="input-group mt-3">
+                      
+                    <div class="scanner-link mx-auto">
+                        <button class="btn btn-dark" type="submit" title="User Qr Code Scan Search"  >
+                          <a class="nav-link" id="scanner-link" aria-current="page" data-toggle="modal" data-target="#scanqrcodeModal"><span class="material-icons">qr_code_scanner</span></a>
+                        </button>
+                      </div>
+                    <div id="scanqrcodeModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                          
+                                    
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Scan QR</h4>
+                                        <button type="button" class="close" id="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                            <div id="scanner-holder" class="position-relative">
+                                                <video id="scanner"></video>
+                                                <div class="">
+                                                </div>
+                                            </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </header>
+
+      <!-- Main Section -->
+      <div class="page-container">
+          <div class="page-title category-title">
+              <!-- <h1>Book Viewer</h1> -->
+          </div>
+
+          <section id="user_list">
+              <div class="toolbar row">
+        
+                <div class="container">
+                    <div class="content row" id="grid">
+                        {% for user in users %}
+                        <div class="col-md-4 col-sm-6 mb-4">
+                            <div class="card" style="border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">Profile #{{ user.id }}</h5>
+                                    <div class="text-center">
+                                        <div class="member-thumb mx-auto">
+                                            {% if user.profile_image %}
+                                            <img src="{% static './profile_images/' %}{{ user.profile_image }}.jpg" alt="{{ user.profile_image }} Cover" height="150px" width="150px" class="rounded-circle img-thumbnail">
+                                            {% else %}
+                                            <img src="{% static './profile_images/default.png' %}" alt="Default Cover" height="150px" width="150px" class="rounded-circle img-thumbnail">
+                                            {% endif %}
+                                        </div>
+                                        <div class="mt-2">
+                                            <h4>{{ user.name }}</h4>
+                                            <p class="text-dark">@{{ user.username }} | <a href="#" class="text-primary">{{ user.email }}</a></p>
+                                        </div>
+                                        <div class=" d-flex flex-column flex-sm-row justify-content-between mt-2">
+                                            {% if user.badges <= 1 %}
+                                            <p>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                            </p>
+                                            {% endif %}
+                                            {% if user.badges >= 2 %}
+                                            <p>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                            </p>
+                                            {% endif %}
+                                            {% if user.badges >= 3 %}
+                                            <p>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                            </p>
+                                            {% endif %}
+                                            {% if user.badges >= 4 %}
+                                            <p>
+                                                <span class="fa fa-star-o" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                            </p>
+                                            {% endif %}
+                                            {% if user.badges >= 5 %}
+                                            <p>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                                <span class="fa fa-star" style="color: gold;"></span>
+                                            </p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="mt-3">
+                                            <a href="{% url 'user_view' user.id %}" class="btn btn-dark btn-rounded waves-effect w-md waves-light">View Profile</a>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="mt-3">
+                                                    <h4>{{ user.id }}</h4>
+                                                    <p class="mb-0 text-muted">Borrowed Books</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="mt-3">
+                                                    <h4>{{ user.id }}</h4>
+                                                    <p class="mb-0 text-muted">Returned Books</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="mt-3">
+                                                    <h4>{{ user.id }}</h4>
+                                                    <p class="mb-0 text-muted">Total Transactions</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+          </section>
+      </div>
+  </div>
+  <!-- /main -->
+
+  <!-- /main-container -->
+  
+</div>
+  
+  
+{% endblock %}
+

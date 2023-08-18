@@ -1,0 +1,188 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Baptists For Africa Library System</title>
+    <link
+      rel="shortcut icon"
+      href="{% static './images/Baptists for Africa.jpg' %}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="library-style.css">
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    
+    <script src="{% static './js/script.js' %}" defer></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+      /* Additional Custom CSS Styles */
+      .card-header {
+        background-color: #f8f9fa;
+        font-weight: bold;
+      }
+    </style>
+
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="{% url 'index' %}"> <img src="{% static './images/Baptists for Africa.jpg' %}" alt="Baptists for Africa Logo"> </a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'books' %}">Books</a></li>
+                    <li><a href="{% url 'reservations' %}">Reservation</a></li>
+                    <li><a href="{% url 'searchbook' %}">Search</a></li>
+                    <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
+                    <li><a href="{% url 'profile_view' %}">Profile</a></li>
+                    <li><a href="{% url 'user_logout' %}">Logout</a></li>
+                    <!-- Add more navigation links as needed -->
+                    {% if is_logged_in %}
+                        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+                    {% endif %}
+                
+                </ul>
+
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </div>
+        </nav>
+
+        <div class="text-box">
+            <h2>Baptists For Africa Library System</h2>
+            <p>Welcome to our official library! Explore our vast collection of books and manage your borrowing and reservations.</p>
+
+        </div>
+        
+    </section>    
+
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-4">
+            <!-- Account Information -->
+            <div class="card">
+              <div class="card-header">Account Information</div>
+              <div class="card-body">
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> johndoe@example.com</p>
+                <p><strong>Membership:</strong> Gold</p>
+                <p><strong>Membership Expiration:</strong> 31st December 2023</p>
+                <p><strong>Account Balance:</strong> $50.00</p>
+                <!-- Add additional account information as needed -->
+              </div>
+            </div>
+    
+            <!-- Personalization and Preferences -->
+            <div class="card mt-4">
+              <div class="card-header">Personalization</div>
+              <div class="card-body">
+                <h5>Reading History</h5>
+                <ul>
+                  <li>Book 1</li>
+                  <li>Book 2</li>
+                  <li>Book 3</li>
+                  <!-- Display more reading history items -->
+                </ul>
+    
+                <h5>Reading Lists</h5>
+                <ul>
+                  <li>To Read</li>
+                  <li>Favorites</li>
+                  <!-- Display more reading lists -->
+                </ul>
+    
+                <!-- Add additional personalization options as needed -->
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-md-8">
+            <!-- Search and Discovery -->
+            <div class="card">
+              <div class="card-header">Search and Discovery</div>
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search for books, articles, etc.">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+                <!-- Add search results and additional functionality as needed -->
+              </div>
+            </div>
+    
+            <!-- Borrowing and Reservations -->
+            <div class="card mt-4">
+              <div class="card-header">Borrowing and Reservations</div>
+              <div class="card-body">
+                <h5>Checked-out Items</h5>
+                <ul>
+                  <li>Book 1 (Due: 25th July 2023)</li>
+                  <li>Book 2 (Due: 2nd August 2023)</li>
+                  <!-- Display more checked-out items -->
+                </ul>
+    
+                <h5>Reservation Status</h5>
+                <ul>
+                  <li>Book 3 (Position: 2)</li>
+                  <li>Book 4 (Position: 5)</li>
+                  <!-- Display more reservation status items -->
+                </ul>
+    
+                <!-- Add additional borrowing and reservation functionality as needed -->
+              </div>
+            </div>
+    
+            <!-- Notifications and Reminders -->
+            <div class="card mt-4">
+              <div class="card-header">Notifications and Reminders</div>
+              <div class="card-body">
+                <h5>Overdue Items</h5>
+                <ul>
+                  <li>Book 5 (Overdue by 3 days)</li>
+                  <li>Book 6 (Overdue by 1 day)</li>
+                  <!-- Display more overdue items -->
+                </ul>
+    
+                <h5>Reservation Notifications</h5>
+                <p>You have a reserved book available for pickup: Book 7</p>
+    
+                <h5>Account Updates</h5>
+                <p>The library will be closed for maintenance on 20th July 2023.</p>
+                <!-- Display more account updates and notifications -->
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Interactions and Support -->
+        <div class="card mt-4">
+          <div class="card-header">Interactions and Support</div>
+          <div class="card-body">
+            <h5>Contact Information</h5>
+            <p><strong>Email:</strong> library@example.com</p>
+            <p><strong>Phone:</strong> +1 123 456 7890</p>
+    
+            <h5>Help and FAQs</h5>
+            <p>Visit our FAQ page for answers to common questions.</p>
+            <!-- Add additional support options as needed -->
+          </div>
+        </div>
+      </div>
+    
+    
+    <footer>
+        <div class="container">
+            <p class="copyrights"> 2023&copy; Baptists For Africa Library System. All rights reserved</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
